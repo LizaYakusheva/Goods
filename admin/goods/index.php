@@ -14,6 +14,7 @@ $goods = $pdo->query("SELECT * FROM goods")->fetchAll(PDO::FETCH_ASSOC);
     <title>Document</title>
 </head>
 <body>
+<h1>ПАНЕЛЬ АДМИНИСТРАТОРА</h1>
 <h1>Список товаров</h1>
 <table>
     <thead>
