@@ -1,5 +1,9 @@
 <?php
+/** @var PDO $pdo */
+$pdo = require $_SERVER['DOCUMENT_ROOT'] . '/db.php';
+$goods = $pdo->query("SELECT * FROM goods")->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,8 +14,29 @@
     <title>Document</title>
 </head>
 <body>
-<h1>ГЛАВНАЯ</h1>
-<h2>Все товары</h2>
-<a href=""></a>
+<h1>Список товаров</h1>
+<a href="create.php" id="create">Добавить товар</a>
+<a href="/receipt/index.php">Поступление всех товаров</a>
+<table>
+    <thead>
+    <td>#</td>
+    <td>name</td>
+    <td>price</td>
+    <td>article</td>
+    </thead>
+    <tbody>
+    <?php foreach ($goods as $good): ?>
+        <tr>
+            <td><?= $good['id'] ?></td>
+            <td><?= $good['name'] ?></td>
+            <td><?= $good['price'] ?></td>
+            <td><?= $good['article'] ?></td>
+            <td><a id="update" href="/edit.php?id=<?= $good['id'] ?>">Изменить</a></td>
+            <td><a id="delete" href="actions/delete.php?id=<?= $good['id'] ?>">Удалить</a></td>
+            <td><a href="/receipt_product/?id=<?= $good['id'] ?>">Подробнее</a></td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
 </body>
 </html>
