@@ -16,7 +16,7 @@ $good = $pdo->query("SELECT * FROM goods WHERE id = '$id'")->fetch();
 </head>
 <body>
 <h1><?= $good['name'] ?></h1>
-<a href="/receipt_product/create.php?id=<?= $good['id'] ?>">Добавить поставку</a>
+<a id="create" href="/receipt_product/create.php?id=<?= $good['id'] ?>">Добавить поставку</a>
 <table>
     <thead>
     <td>datetime</td>
